@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const sequelize = require('./config/sequelize');
 const User = require('./model/user');
 const Task = require('./model/task');
@@ -271,7 +271,7 @@ app.get('/comments', async (req, res) => {
         const comments = await Comment.findAll();
 
         return res.status(200).json({ message: `Comments retrieved successfully`, comments});
-        
+
     }catch (error) {
         res.status(500).json({ message: `Internal server error: ${error.message}` });
         console.log(error);
